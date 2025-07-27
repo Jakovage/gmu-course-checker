@@ -1,3 +1,6 @@
 # IDE folders
 .idea/
 .vscode/
+
+# python interpreter
+__pycache__/

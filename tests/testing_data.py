@@ -15,7 +15,6 @@ DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", 
 DUMMY_COURSE_DATA = [DUMMY_COURSE, DUMMY_LINKED_LAB, DUMMY_LINKED_RECITATION]
 
 # capacities [capacity, remaining sets, waitlist capacity, remaining waitlist seats]
-
 COURSE_CAPACITIES = {
     "No seats, no waitlist": [80, 0, 0, 0],
     "No seats, waitlist available": [80, 0, 99, 20],

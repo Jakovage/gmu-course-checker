@@ -1,7 +1,8 @@
 from utils.meeting_days import MeetingDays
+from utils.course_type import CourseType
 
 class Course:
-    def __init__(self, url, course_code, section, class_name, instructior, start_time, end_time, meeting_days, class_type):
+    def __init__(self, url: str, course_code: str, section: str, class_name: str, instructior: str, start_time: str, end_time: str, meeting_days: MeetingDays, class_type: CourseType):
         # basic course info populated from constructor parameters
         self.url = url
         self.course_code = course_code
@@ -24,7 +25,7 @@ class Course:
         self.waitlist_remaining = 0
         self.waitlist_seats_taken = 0
 
-    def update_seat_info(self, capacity, remaining_seats, waitlist_capacity, waitlist_remaining):
+    def update_seat_info(self, capacity: int, remaining_seats: int, waitlist_capacity: int, waitlist_remaining: int):
         self.capacity = capacity
         self.remaining_seats = remaining_seats
         self.seats_taken = capacity - remaining_seats
@@ -35,29 +36,40 @@ class Course:
     def is_class_available(self):
         # check for linked courses (e.g. recitations, labs, etc)
         if len(self.linked_courses) == 0:
-
-            # check remaining sets
-            if self.remaining_seats > 0:
-
-                # check existence of waitlist
-                if self.waitlist_capacity == 0:
-                    return True
-                else:
-                    # check is anyone is on a waitlist
-                    if self.waitlist_seats_taken == 0:
-                        return True
-                    else:
-                        return False
-
-            # no remaining seats    
-            else:
-                return False
+            return self.check_self_availability()
         
         # iterate though the linked course and check their availability
         else:
-            for linked_course in self.linked_courses:
+            # check if the course itself is available before checking linked courses
+            if self.check_self_availability() == False:
+                return False
+            else:
+                return self.check_linked_courses_availability()
+            
+    # check if the course itself is available
+    def check_self_availability(self):
+        # check remaining sets
+        if self.remaining_seats > 0:
 
-                # this assumes that only one available linked recitation/lab/etc is needed
+            # check existence of waitlist
+            if self.waitlist_capacity == 0:
+                return True
+            else:
+                # check is anyone is on a waitlist
+                if self.waitlist_seats_taken == 0:
+                    return True
+                else:
+                    return False
+
+        # no remaining seats    
+        else:
+            return False        
+
+    # check if the linked courses are available
+    def check_linked_courses_availability(self):
+        for linked_course in self.linked_courses:
+
+            # this assumes that only one available linked recitation/lab/etc is needed
                 # to register 
                 if linked_course.is_class_available() == True:
                     return True

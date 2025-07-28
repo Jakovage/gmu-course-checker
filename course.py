@@ -1,17 +1,17 @@
-from utilities.meeting_days import MeetingDays
+from utils.meeting_days import MeetingDays
 
 class Course:
-    def __init__(self, url):
+    def __init__(self, url, course_code, section, class_name, instructior, start_time, end_time, meeting_days, class_type):
         # basic course info populated from constructor parameters
         self.url = url
-        self.course_code = ""
-        self.section = ""
-        self.class_name = ""
-        self.instructor = ""
-        self.start_time = ""
-        self.end_time = ""
-        self.meeting_days = {}
-        self.class_type = None
+        self.course_code = course_code
+        self.section = section
+        self.class_name = class_name
+        self.instructor = instructior
+        self.start_time = start_time
+        self.end_time = end_time
+        self.meeting_days = meeting_days
+        self.class_type = class_type
 
         # other instance variables
         self.linked_courses = []

@@ -33,19 +33,36 @@ class Course:
         self.waitlist_seats_taken = waitlist_capacity - waitlist_remaining
     
     def is_class_available(self):
-        # check remaining sets
-        if self.remaining_seats > 0:
+        # check for linked courses (e.g. recitations, labs, etc)
+        if len(self.linked_courses) == 0:
 
-            # check existence of waitlist
-            if self.waitlist_capacity == 0:
-                return True
-            else:
-                # check is anyone is on a waitlist
-                if self.waitlist_seats_taken == 0:
+            # check remaining sets
+            if self.remaining_seats > 0:
+
+                # check existence of waitlist
+                if self.waitlist_capacity == 0:
                     return True
                 else:
-                    return False
-                
-        # no remaining seats    
+                    # check is anyone is on a waitlist
+                    if self.waitlist_seats_taken == 0:
+                        return True
+                    else:
+                        return False
+
+            # no remaining seats    
+            else:
+                return False
+        
+        # iterate though the linked course and check their availability
         else:
-            return False
+            for linked_course in self.linked_courses:
+
+                # this assumes that only one available linked recitation/lab/etc is needed
+                # to register 
+                if linked_course.is_class_available() == True:
+                    return True
+                
+                # if none of the linked courses are available, then this course is not available
+                return False
+            
+        

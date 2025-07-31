@@ -14,10 +14,10 @@ class Course:
         self.meeting_days = meeting_days
         self.class_type = class_type
 
-        # other instance variables
+        # list of linked courses
         self.linked_courses = []
 
-        # availablity instance variable
+        # instance variables that hold capacity info
         self.capacity = 0
         self.remaining_seats = 0
         self.seats_taken = 0

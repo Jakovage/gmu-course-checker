@@ -1,24 +1,42 @@
-# import classes from other folders
+# Import statements from other folders and libraries
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from utils.meeting_days import MeetingDays
 from utils.course_type import CourseType
 from course import Course
 
+# This contains dummy information for a Course object
+DUMMY_COURSE = ["example URL", "CS 110", "001", "Introduction to Computer Science", "Mr. Plankton", "8:30 AM", "9:45 AM", MeetingDays(), CourseType(1)]
+DUMMY_LINKED_LAB = ["example URL", "CS 110", "101", "CS 110 Lab", "Mr. Plankton", "9:00 AM", "9:50 AM", MeetingDays(), CourseType(2)]
+DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", "Mr. Plankton", "9:00 AM", "9:50 AM", MeetingDays(), CourseType(3)]
 
-# dummy values for a course
-DUMMY_COURSE = ["example URL", "CS 110", "001", "Introduction to Computer Science", "Mr. Plankton", "8:30 AM", "9:45 AM", MeetingDays(True, False, True, False, False, False, False), CourseType(1)]
-DUMMY_LINKED_LAB = ["example URL", "CS 110", "101", "CS 110 Lab", "Mr. Plankton", "9:00 AM", "9:50 AM", MeetingDays(False, True, False, False, False, False, False), CourseType(2)]
-DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", "Mr. Plankton", "9:00 AM", "9:50 AM", MeetingDays(False, False, False, True, False, False, False), CourseType(3)]
+# A list containing info for a Course object
 DUMMY_COURSE_DATA = [DUMMY_COURSE, DUMMY_LINKED_LAB, DUMMY_LINKED_RECITATION]
 
-# capacities [capacity, remaining sets, waitlist capacity, remaining waitlist seats]
+# These are test values to represent capacity numbers for various scenarios for both lecture sections
+# and labs/recitation section
+MAX_SEATS = 80
+MAX_WAITLIST_SEATS = 99
+OPEN_SEATS = 30
+OPEN_WAITLIST_SEATS = 15
+LINKED_MAX_SEATS = 40
+LINKED_OPEN_SEATS = 15
+
+# Dictionary containing various capacity scenarios for a lecture section
+# [capacity, remaining seats, waitlist capacity, waitlist remaining]
 COURSE_CAPACITIES = {
-    "No seats, no waitlist": [80, 0, 0, 0],
-    "No seats, waitlist available": [80, 0, 99, 20],
-    "No seats, waitlist full": [80, 0, 99, 0],
-    "Open seats only for waitlist": [80, 1, 99, 15],
-    "Available seats": [80, 40, 99, 99]
+    "No seats, no waitlist": [MAX_SEATS, 0, 0, 0],
+    "No seats, waitlist available": [MAX_SEATS, 0, MAX_WAITLIST_SEATS, OPEN_WAITLIST_SEATS],
+    "No seats, waitlist full": [MAX_SEATS, 0, MAX_WAITLIST_SEATS, 0],
+    "Open seats only for waitlist": [MAX_SEATS, 1, MAX_WAITLIST_SEATS, OPEN_WAITLIST_SEATS],
+    "Available seats": [MAX_SEATS, OPEN_SEATS, MAX_WAITLIST_SEATS, MAX_WAITLIST_SEATS]
+}
+
+LINKED_COURSE_CAPACITIES = {
+    "No seats, no waitlist": [LINKED_MAX_SEATS, 0, 0, 0],
+    "No seats, waitlist available": [LINKED_MAX_SEATS, 0, MAX_WAITLIST_SEATS, LINKED_OPEN_SEATS],
+    "No seats, waitlist full": [LINKED_MAX_SEATS, 0, MAX_WAITLIST_SEATS, 0],
+    "Open seats only for waitlist": [LINKED_MAX_SEATS, 1, MAX_WAITLIST_SEATS, LINKED_OPEN_SEATS],
+    "Available seats": [LINKED_MAX_SEATS, LINKED_OPEN_SEATS, MAX_WAITLIST_SEATS, MAX_WAITLIST_SEATS]
 }

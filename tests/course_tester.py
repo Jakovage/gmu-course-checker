@@ -10,6 +10,7 @@ from course import Course
 # import testing-specific data
 from testing_data import DUMMY_COURSE_DATA
 from testing_data import COURSE_CAPACITIES
+from testing_data import LINKED_COURSE_CAPACITIES
 
 # this tests courses that have no linked sections
 def no_linked_sections():
@@ -68,7 +69,7 @@ def test_linked_courses():
     course1 = Course(*DUMMY_COURSE_DATA[0])
     course1.update_seat_info(*COURSE_CAPACITIES["Available seats"])
     recitation1 = Course(*DUMMY_COURSE_DATA[2])
-    recitation1.update_seat_info(*COURSE_CAPACITIES["Available seats"])
+    recitation1.update_seat_info(*LINKED_COURSE_CAPACITIES["Available seats"])
     course1.linked_courses.append(recitation1)
     print("Test 1: Lecture open, recitation open")
     print("Expected answer: True")
@@ -82,7 +83,7 @@ def test_linked_courses():
     course2 = Course(*DUMMY_COURSE_DATA[0])
     course2.update_seat_info(*COURSE_CAPACITIES["Available seats"])
     recitation2 = Course(*DUMMY_COURSE_DATA[2])
-    recitation2.update_seat_info(*COURSE_CAPACITIES["No seats, no waitlist"])
+    recitation2.update_seat_info(*LINKED_COURSE_CAPACITIES["No seats, no waitlist"])
     course2.linked_courses.append(recitation2)
     print("Test 2: Lecture open, recitation closed")
     print("Expected answer: False")
@@ -96,7 +97,7 @@ def test_linked_courses():
     course3 = Course(*DUMMY_COURSE_DATA[0])
     course3.update_seat_info(*COURSE_CAPACITIES["No seats, no waitlist"])
     recitation3 = Course(*DUMMY_COURSE_DATA[2])
-    recitation3.update_seat_info(*COURSE_CAPACITIES["Available seats"])
+    recitation3.update_seat_info(*LINKED_COURSE_CAPACITIES["Available seats"])
     course3.linked_courses.append(recitation3)
     print("Test 3: Lecture closed, recitation open")
     print("Expected answer: False")
@@ -108,9 +109,9 @@ def test_linked_courses():
     course4 = Course(*DUMMY_COURSE_DATA[0])
     course4.update_seat_info(*COURSE_CAPACITIES["Available seats"])
     recitation4_1 = Course(*DUMMY_COURSE_DATA[2])
-    recitation4_1.update_seat_info(*COURSE_CAPACITIES["Available seats"])
+    recitation4_1.update_seat_info(*LINKED_COURSE_CAPACITIES["Available seats"])
     recitation4_2 = Course(*DUMMY_COURSE_DATA[2])
-    recitation4_2.update_seat_info(*COURSE_CAPACITIES["No seats, no waitlist"])
+    recitation4_2.update_seat_info(*LINKED_COURSE_CAPACITIES["No seats, no waitlist"])
     course4.linked_courses.append(recitation4_1)
     course4.linked_courses.append(recitation4_2)
     print("Test 4: Lecture open, one recitation open, one recitation closed")
@@ -123,9 +124,9 @@ def test_linked_courses():
     course5 = Course(*DUMMY_COURSE_DATA[0])
     course5.update_seat_info(*COURSE_CAPACITIES["No seats, no waitlist"])
     recitation5_1 = Course(*DUMMY_COURSE_DATA[2])
-    recitation5_1.update_seat_info(40, 0, 0, 0)
+    recitation5_1.update_seat_info(*LINKED_COURSE_CAPACITIES["No seats, no waitlist"])
     recitation5_2 = Course(*DUMMY_COURSE_DATA[2])
-    recitation5_2.update_seat_info(40, 0, 0, 0)
+    recitation5_2.update_seat_info(*LINKED_COURSE_CAPACITIES["No seats, no waitlist"])
     course5.linked_courses.append(recitation5_1)
     course5.linked_courses.append(recitation5_2)
     print("Test 5: Lecture closed, both recitations closed")
@@ -141,9 +142,9 @@ def test_linked_courses():
     course6 = Course(*DUMMY_COURSE_DATA[0])
     course6.update_seat_info(*COURSE_CAPACITIES["No seats, no waitlist"])
     recitation6_1 = Course(*DUMMY_COURSE_DATA[2])
-    recitation6_1.update_seat_info(40, 5, 0, 0)
+    recitation6_1.update_seat_info(*LINKED_COURSE_CAPACITIES["Available seats"])
     recitation6_2 = Course(*DUMMY_COURSE_DATA[2])
-    recitation6_2.update_seat_info(40, 1, 0, 0)
+    recitation6_2.update_seat_info(*LINKED_COURSE_CAPACITIES["Available seats"])
     course6.linked_courses.append(recitation6_1)
     course6.linked_courses.append(recitation6_2)
     print("Test 5: Lecture closed, both recitations open")

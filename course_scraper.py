@@ -1,4 +1,6 @@
 from data import BASE_URL, ENDPOINTS, TERM_DATE_VALUES, CRSE_UNSC_VALUES
+from utils.meeting_days import MeetingDays
+from utils.course_type import CourseType
 from bs4 import BeautifulSoup
 from course import Course
 import requests
@@ -102,11 +104,34 @@ class CourseScraper:
                 # returns the CRN if the target number and course section are found
                 if course_number == target_number and course_section == target_section:
                     #print(listing_text)
-                    new_html = rows[i*3].text + rows[(i*3) + 1].text + rows[(i*3) + 2].text
+                    #new_html = str(rows[i*3]) + str(rows[(i*3) + 1]) + str(rows[(i*3) + 2])
+                    new_html = ''.join(str(tag) for tag in rows[i*3:i*3 + 3])
                     return BeautifulSoup(new_html, "html.parser")
         #'''
         return None
 
     # returns a course object with its information populated by the html returned by get_listing()
     def get_course(self, subject, target_number, target_section):
-        #soup = self.get_listing_soup(subject, target_number, target_section)
+        soup = self.get_listing_soup(subject, target_number, target_section)
+
+        heading_th = soup.find("th", class_={"ddtitle"})
+        heading = heading_th.find('a')
+
+        # converts heading from something like this: "Precalculus Mathematics - 71565 - MATH 105 - 001"
+        # into this: ["Precalculus Mathematics", "71565", "MATH 105", "001"]
+        parts = heading.text.split(" - ")
+        crn = parts[-3] # the CRN is guaranteed to be the 3rd last item in the list
+
+        url = f"{BASE_URL}{ENDPOINTS["detail_sched"]}?term_in={self.term}&crn_in={crn}"
+        course_code = parts[-2] # the CRN is guaranteed to be the 2nd last item in parts
+        section = parts[-1] # the CRN is guaranteed to be the last item in parts
+        class_name = ' - '.join(parts[:-3]) # .split separates on " - ", so in case that was part of the course title itself, it'll be restored
+
+        table = soup.find("table", {"class" : "datadisplaytable"})
+        cols = soup.find_all("td")[2:]
+
+        instructor = cols[6].text
+        time_period = cols[4].text
+        meeting_days = cols[2].text
+        class_type = cols[5].text
+        return Course(url, course_code, section, class_name, instructor, time_period, meeting_days, class_type)

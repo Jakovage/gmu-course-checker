@@ -76,4 +76,13 @@ class Course:
         # if none of the linked courses are available, then this course is not available
         return False
             
-        
+    def __str__(self):
+        return (
+            f"{self.course_code}-{self.section} ({self.class_type})\n"
+            f"{self.class_name}\n"
+            f"Instructor: {self.instructor}\n"
+            f"Time: {self.time_period} | Days: {self.meeting_days}\n"
+            f"Seats: {self.remaining_seats}/{self.capacity} available\n"
+            f"Waitlist: {self.waitlist_remaining}/{self.waitlist_capacity} available\n"
+            f"URL: {self.url}"
+        )        

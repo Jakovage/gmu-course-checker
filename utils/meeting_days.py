@@ -2,6 +2,7 @@ class MeetingDays:
     # constructor with meeting days specified
     def __init__(self, input_string):
         # string-boolean dictionary to represent days when a class meets
+        self.days_string = input_string
         self.meeting_days = {
             "Monday": False,
             "Tuesday": False,
@@ -41,3 +42,6 @@ class MeetingDays:
                     self.meeting_days["Friday"] = True
                 case "S":
                     self.meeting_days["Saturday"] = True
+                
+    def __str__(self):
+        return self.days_string

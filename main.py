@@ -14,19 +14,19 @@ def tokenize_course_code(code):
     
 def main():
     term = '202570'
-    course_code = 'stat344' # accepted formats
-    course_section = '008'
+    course_code = 'cs110' # accepted formats
+    course_section = '001'.upper()
 
     # course prefix: CS, ECE, MATH, ENGH | course_number: 112, 211, 310, 483
     course_subject, course_number = tokenize_course_code(course_code)
-    course_section = course_section.upper()
 
     scraper = CourseScraper(term)
-    crn = scraper.get_crn(course_subject, course_number, course_section)
+    course = scraper.get_course(course_subject, course_number, course_section)
+    print(course)
 
-    course_url = f"{BASE_URL}{ENDPOINTS["detail_sched"]}?term_in={term}&crn_in={crn}"
+    #course_url = f"{BASE_URL}{ENDPOINTS["detail_sched"]}?term_in={term}&crn_in={crn}"
 
-    print(f"The CRN for {course_subject} {course_number} Section {course_section} is {crn}, and the link to the specific course page is:\n{course_url}\n")
+    #print(f"The CRN for {course_subject} {course_number} Section {course_section} is {crn}, and the link to the specific course page is:\n{course_url}\n")
 
 if __name__ == '__main__':
     main()

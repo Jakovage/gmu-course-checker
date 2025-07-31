@@ -12,8 +12,17 @@ class MeetingDays:
             "Sunday": False
         }
 
+        # boolean value to determine if a course is an asynchronous section
+        self.is_async_section = False
+
     # update meeting days dict based on the scraped meeting days text on PatriotWeb
-    def set_meeting_times(self, input_string):
+    def set_meeting_times(self, input_string: str):
+        # check if the input string is a whitespace character
+        # in PatriotWeb this would indicate that a course is asynchronus
+        if input_string.isspace():
+            self.is_async_section = True
+            return
+
         # iterate through each char in input_string (e.g "MWF")
         for day in input_string:
             # match day to the corresponding day of the week and update meeting_days

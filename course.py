@@ -69,12 +69,12 @@ class Course:
     def check_linked_courses_availability(self):
         for linked_course in self.linked_courses:
 
-            # this assumes that only one available linked recitation/lab/etc is needed
-                # to register 
-                if linked_course.is_class_available() == True:
-                    return True
+            # this assumes that only one available linked recitation/lab/etc is needed to register
+            # i am not aware of any courses at GMU that requires more than one linked course in order to register
+            if linked_course.is_class_available() == True:
+                return True
                 
-                # if none of the linked courses are available, then this course is not available
-                return False
+        # if none of the linked courses are available, then this course is not available
+        return False
             
         

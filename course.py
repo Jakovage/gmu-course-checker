@@ -2,7 +2,7 @@ from utils.meeting_days import MeetingDays
 from utils.course_type import CourseType
 
 class Course:
-    def __init__(self, url: str, course_code: str, section: str, class_name: str, instructor: str, time_period: str, meeting_days: MeetingDays, class_type: CourseType):
+    def __init__(self, url: str, course_code: str, section: str, class_name: str, instructor: str, time_period: str, meeting_days_str: str, class_type: CourseType):
         # basic course info populated from constructor parameters
         self.url = url
         self.course_code = course_code
@@ -10,7 +10,7 @@ class Course:
         self.class_name = class_name
         self.instructor = instructor
         self.time_period = time_period
-        self.meeting_days = meeting_days
+        self.meeting_days = MeetingDays(meeting_days_str)
         self.class_type = class_type
 
         # list of linked courses

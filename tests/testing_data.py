@@ -7,9 +7,9 @@ from utils.course_type import CourseType
 from course import Course
 
 # This contains dummy information for a Course object
-DUMMY_COURSE = ["example URL", "CS 110", "001", "Introduction to Computer Science", "Mr. Plankton", "8:30 AM", "9:45 AM", MeetingDays(), CourseType(1)]
-DUMMY_LINKED_LAB = ["example URL", "CS 110", "101", "CS 110 Lab", "Mr. Plankton", "9:00 AM", "9:50 AM", MeetingDays(), CourseType(2)]
-DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", "Mr. Plankton", "9:00 AM", "9:50 AM", MeetingDays(), CourseType(3)]
+DUMMY_COURSE = ["example URL", "CS 110", "001", "Introduction to Computer Science", "Mr. Plankton", "7:20 pm - 10:00 pm", MeetingDays(), CourseType(1)]
+DUMMY_LINKED_LAB = ["example URL", "CS 110", "101", "CS 110 Lab", "Mr. Plankton", "4:30 pm - 7:10 pm", MeetingDays(), CourseType(2)]
+DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", "Mr. Plankton", "10:30 am - 1:10 pm", MeetingDays(), CourseType(3)]
 
 # A list containing info for a Course object
 DUMMY_COURSE_DATA = [DUMMY_COURSE, DUMMY_LINKED_LAB, DUMMY_LINKED_RECITATION]

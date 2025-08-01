@@ -1,5 +1,6 @@
 from course_scraper import CourseScraper
 from course_checker import CourseChecker
+from course_list import CourseList
 from data import BASE_URL, ENDPOINTS
 import re
 
@@ -22,11 +23,19 @@ def main():
     course_subject, course_number = tokenize_course_code(course_code)
 
     scraper = CourseScraper(term)
-    course = scraper.get_course(course_subject, course_number, course_section)
-    print(course)
+    course1 = scraper.get_course(course_subject, course_number, course_section)
+    course2 = scraper.get_course("CS", "211", "203")
+    course3 = scraper.get_course("CS", "310", "002")
+    course4 = scraper.get_course("CS", "367", "308")
 
-    course_checker = CourseChecker(course)
-    print(course_checker)
+    course_checker1 = CourseChecker(course1)
+    course_checker2 = CourseChecker(course2)
+    course_checker3 = CourseChecker(course3)
+    course_checker4 = CourseChecker(course4)
+
+    course_list = CourseList([course_checker1, course_checker2, course_checker3, course_checker4])
+
+    print(course_list)
 
 if __name__ == '__main__':
     main()

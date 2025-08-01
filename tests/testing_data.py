@@ -7,9 +7,9 @@ from utils.course_type import CourseType
 from course import Course
 
 # This contains dummy information for a Course object
-DUMMY_COURSE = ["example URL", "CS 110", "001", "Introduction to Computer Science", "Mr. Plankton", "7:20 pm - 10:00 pm", "  ", CourseType(1)]
-DUMMY_LINKED_LAB = ["example URL", "CS 110", "101", "CS 110 Lab", "Mr. Plankton", "4:30 pm - 7:10 pm", "", CourseType(2)]
-DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", "Mr. Plankton", "10:30 am - 1:10 pm", "M", CourseType(3)]
+DUMMY_COURSE = ["example URL", "CS 110", "001", "Introduction to Computer Science", "Mr. Plankton", "Horizon Hall", "7:20 pm - 10:00 pm", "  ", CourseType.LECTURE]
+DUMMY_LINKED_LAB = ["example URL", "CS 110", "101", "CS 110 Lab", "Mr. Plankton", "Horizon Hall", "4:30 pm - 7:10 pm", "", CourseType.LABORATORY]
+DUMMY_LINKED_RECITATION = ["example URL", "CS 110", "102", "CS 110 Recitation", "Mr. Plankton", "Horizon Hall", "10:30 am - 1:10 pm", "M", CourseType.RECITATION]
 
 # A list containing info for a Course object
 DUMMY_COURSE_DATA = [DUMMY_COURSE, DUMMY_LINKED_LAB, DUMMY_LINKED_RECITATION]
@@ -40,3 +40,13 @@ LINKED_COURSE_CAPACITIES = {
     "Open seats only for waitlist": [LINKED_MAX_SEATS, 1, MAX_WAITLIST_SEATS, LINKED_OPEN_SEATS],
     "Available seats": [LINKED_MAX_SEATS, LINKED_OPEN_SEATS, MAX_WAITLIST_SEATS, MAX_WAITLIST_SEATS]
 }
+
+# These are values in the HTML code for the PatriotWeb website that corresponds to a semester
+FALL_2025_VALUE = "202570"
+SUMMER_2025_VALUE = "202540"
+
+# Array of actual Fall 2025 classes and sections
+FALL_2025_COURSES = [["CS", "112", "001"], 
+                     ["CS", "262", "004"], 
+                     ["MATH", "203", "DL1"],
+                     ["MATH", "125", "DL2"]]

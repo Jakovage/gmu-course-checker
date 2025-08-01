@@ -31,7 +31,7 @@ class CourseScraper:
         data = {input.get("name"): input.get("value") for input in hidden_inputs}
         data["p_term"] = self.term
 
-        post_url = f"{BASE_URL}{ENDPOINTS["term_date"]}"
+        post_url = f"{BASE_URL}{ENDPOINTS['term_date']}"
         post_response = self.session.post(post_url, data=data)
         return BeautifulSoup(post_response.text, "html.parser")
     
@@ -48,7 +48,7 @@ class CourseScraper:
         data["term_in"] = self.term
         data["sel_subj"][1] = subject
 
-        post_url = f"{BASE_URL}{ENDPOINTS["crse_unsec"]}"
+        post_url = f"{BASE_URL}{ENDPOINTS['crse_unsec']}"
     
         post_response = self.session.post(post_url, data=data)
 
@@ -56,7 +56,7 @@ class CourseScraper:
     
     # scrapes from the initial term select page to the page containing all courses in a certain subject. returns that soup
     def _get_courses_page(self, subject):
-        url = f"{BASE_URL}{ENDPOINTS["dyn_sched"]}"
+        url = f"{BASE_URL}{ENDPOINTS['dyn_sched']}"
 
         response = None
 
@@ -122,7 +122,7 @@ class CourseScraper:
         parts = heading.text.split(" - ")
         crn = parts[-3] # the CRN is guaranteed to be the 3rd last item in the list
 
-        url = f"{BASE_URL}{ENDPOINTS["detail_sched"]}?term_in={self.term}&crn_in={crn}"
+        url = f"{BASE_URL}{ENDPOINTS['detail_sched']}?term_in={self.term}&crn_in={crn}"
         course_code = parts[-2] # the CRN is guaranteed to be the 2nd last item in parts
         section = parts[-1] # the CRN is guaranteed to be the last item in parts
         class_name = ' - '.join(parts[:-3]) # .split separates on " - ", so in case that was part of the course title itself, it'll be restored
@@ -134,4 +134,5 @@ class CourseScraper:
         time_period = cols[4].text
         meeting_days = cols[2].text
         class_type = cols[5].text
-        return Course(url, course_code, section, class_name, instructor, time_period, meeting_days, class_type)
+        location = cols[3].text
+        return Course(url, course_code, section, class_name, instructor, location, time_period, meeting_days, class_type)

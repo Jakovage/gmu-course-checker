@@ -2,13 +2,14 @@ from utils.meeting_days import MeetingDays
 from utils.course_type import CourseType
 
 class Course:
-    def __init__(self, url: str, course_code: str, section: str, class_name: str, instructor: str, time_period: str, meeting_days_str: str, class_type: CourseType):
+    def __init__(self, url: str, course_code: str, section: str, class_name: str, instructor: str, location: str, time_period: str, meeting_days_str: str, class_type: CourseType):
         # basic course info populated from constructor parameters
         self.url = url
         self.course_code = course_code
         self.section = section
         self.class_name = class_name
         self.instructor = instructor
+        self.location = location
         self.time_period = time_period
         self.meeting_days = MeetingDays(meeting_days_str)
         self.class_type = class_type
@@ -81,6 +82,7 @@ class Course:
             f"{self.course_code}-{self.section} ({self.class_type})\n"
             f"{self.class_name}\n"
             f"Instructor: {self.instructor}\n"
+            f"Location: {self.location}\n"
             f"Time: {self.time_period} | Days: {self.meeting_days}\n"
             f"Seats: {self.remaining_seats}/{self.capacity} available\n"
             f"Waitlist: {self.waitlist_remaining}/{self.waitlist_capacity} available\n"

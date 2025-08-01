@@ -1,4 +1,5 @@
 from course_scraper import CourseScraper
+from course_checker import CourseChecker
 from data import BASE_URL, ENDPOINTS
 import re
 
@@ -24,9 +25,8 @@ def main():
     course = scraper.get_course(course_subject, course_number, course_section)
     print(course)
 
-    #course_url = f"{BASE_URL}{ENDPOINTS["detail_sched"]}?term_in={term}&crn_in={crn}"
-
-    #print(f"The CRN for {course_subject} {course_number} Section {course_section} is {crn}, and the link to the specific course page is:\n{course_url}\n")
+    course_checker = CourseChecker(course)
+    print(course_checker)
 
 if __name__ == '__main__':
     main()

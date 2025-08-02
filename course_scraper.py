@@ -40,7 +40,7 @@ class CourseScraper:
         valid_subjects = self._fetch_valid_subjects(soup) # list of all valid course subjects
         if subject not in valid_subjects:
             print(f"{subject} is not a valid subject!")
-            exit()
+            return None
 
         # CRSE_UNSC_VALUES holds all the valid default data for the form.
         # Just one thing needs to be changed, that being the sel_subject input
@@ -78,6 +78,8 @@ class CourseScraper:
     # returns the 3 tr elements in a course listing as html
     def get_listing_soup(self, subject, target_number, target_section):
         soup = self._get_courses_page(subject)
+        if soup is None:
+            return None
 
         table = soup.find("table", {"class" : "datadisplaytable"})
         #rows = table.find_all("th", class_="ddtitle") # only html rows with class ddtitle contain the relevant information for extracting the CRN
@@ -113,6 +115,8 @@ class CourseScraper:
     # returns a course object with its information populated by the html returned by get_listing()
     def get_course(self, subject, target_number, target_section):
         soup = self.get_listing_soup(subject, target_number, target_section)
+        if soup is None:
+            return None
 
         heading_th = soup.find("th", class_={"ddtitle"})
         heading = heading_th.find('a')

@@ -51,3 +51,136 @@ FALL_2025_COURSES = [["CS", "112", "001"],
                      ["MATH", "203", "DL1"],
                      ["MATH", "125", "DL2"],
                      ["CALC", "113", "004"]]
+
+# list of strings to test methods in MeetingDays
+SINGLE_DAY_STRINGS = ["M", "T", "W", "R", "F", "S"] 
+MULTI_DAY_STRINGS = ["MW", "MWF", "TR", "MTWR", "MTWRF"]
+WHITESPACE_STRINGS = [" ", "\n", "\t", "\u00A0"]
+
+# dictionaries that are ment to represent the correct values in meeting_days when
+# passing on the string
+SINGLE_DAY_DICT_CORRECT = [
+    # M
+    {
+        "Monday": True,
+        "Tuesday": False,
+        "Wednesday": False,
+        "Thursday": False,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+        }, 
+    # T
+    {
+        "Monday": False,
+        "Tuesday": True,
+        "Wednesday": False,
+        "Thursday": False,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # W
+    {
+        "Monday": False,
+        "Tuesday": False,
+        "Wednesday": True,
+        "Thursday": False,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # R
+    {
+        "Monday": False,
+        "Tuesday": False,
+        "Wednesday": False,
+        "Thursday": True,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # F
+    {
+        "Monday": False,
+        "Tuesday": False,
+        "Wednesday": False,
+        "Thursday": False,
+        "Friday": True,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # S
+    {
+        "Monday": False,
+        "Tuesday": False,
+        "Wednesday": False,
+        "Thursday": False,
+        "Friday": False,
+        "Saturday": True,
+        "Sunday": False
+    }
+]
+
+MULTI_DAY_DICT_CORRECT = [
+    # MW
+    {
+        "Monday": True,
+        "Tuesday": False,
+        "Wednesday": True,
+        "Thursday": False,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+        }, 
+    # MWF
+    {
+        "Monday": True,
+        "Tuesday": False,
+        "Wednesday": True,
+        "Thursday": False,
+        "Friday": True,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # TR
+    {
+        "Monday": False,
+        "Tuesday": True,
+        "Wednesday": False,
+        "Thursday": True,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # MTWR
+    {
+        "Monday": True,
+        "Tuesday": True,
+        "Wednesday": True,
+        "Thursday": True,
+        "Friday": False,
+        "Saturday": False,
+        "Sunday": False
+    }, 
+    # MTWRF
+    {
+        "Monday": True,
+        "Tuesday": True,
+        "Wednesday": True,
+        "Thursday": True,
+        "Friday": True,
+        "Saturday": False,
+        "Sunday": False
+    }
+]
+
+NO_MEETING_DAYS_DICT =  {
+    "Monday": False,
+    "Tuesday": False,
+    "Wednesday": False,
+    "Thursday": False,
+    "Friday": False,
+    "Saturday": False,
+    "Sunday": False
+}

@@ -184,3 +184,14 @@ NO_MEETING_DAYS_DICT =  {
     "Saturday": False,
     "Sunday": False
 }
+
+# these are lists of actual courses that are currently available and unavailable
+# as of August 6th, 2025
+FALL_2025_AVAIL_COURSES = [["CS", "571", "002"],
+                           ["CS", "110", "001"],
+                           ["CS", "310", "001"]]
+
+FALL_2025_UNAVAIL_COURSES = [["CS", "330", "003"],
+                             ["CS", "471", "002"],
+                             ["CS", "262", "003"]]
+

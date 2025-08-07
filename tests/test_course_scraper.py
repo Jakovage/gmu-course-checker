@@ -6,7 +6,6 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from course_scraper import CourseScraper
-from course import Course
 
 # import data from testing_data.py
 from tests.testing_data import FALL_2025_VALUE, FALL_2025_COURSES
@@ -45,7 +44,7 @@ class TestCourseScraper(unittest.TestCase):
     def test_invalid_course_object_creation(self):
         self.assertIsNone(self.scraper.get_course(*FALL_2025_COURSES[self.INVALID_DATA]))
 
-    # test course infomation
+    # test course information
     def test_course_info_scrape(self):
         # CS 112 Section 001 Fall 2025
         self.assertEqual(self.cs_112_001.course_code, "CS 112")

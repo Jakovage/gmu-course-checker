@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 class CourseEmail:
 
     def __init__(self, recipient: str):
-        # load enviornment variables
+        # load environment variables
         load_dotenv()
         
         # SMTP configuration constants

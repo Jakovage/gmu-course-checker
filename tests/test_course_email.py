@@ -2,6 +2,7 @@
 import unittest
 
 # import os module to access .env file data
+import os
 from dotenv import load_dotenv
 
 # import statements to access other classes

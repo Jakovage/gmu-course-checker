@@ -21,7 +21,7 @@ class MeetingDays:
     # update meeting days dict based on the scraped meeting days text on PatriotWeb
     def set_meeting_times(self, input_string: str):
         # check if the input string is a whitespace character
-        # in PatriotWeb this would indicate that a course is asynchronous
+        # in PatriotWeb this would indicate that a course is asynchronus
         if not input_string.strip():
             self.is_async_section = True
             return
